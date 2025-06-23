@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+{% block title %}Dashboard – CyberSecure{% endblock %}
+{% block content %}
+<style>
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 0 10px;
+  }
+  .dashboard-actions a {
+    margin-left: 15px;
+    padding: 8px 14px;
+    background: #28a745;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+  }
+  .dashboard-actions a:hover {
+    background: #218838;
+  }
+  .section {
+    margin-top: 40px;
+  }
+  .table-container {
+    overflow-x: auto;
+  }
+  .log-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    min-width: 800px;
+  }
+  .log-table th, .log-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    font-size: 0.95em;
+  }
+  .log-table th {
+    background: #f1f1f1;
+  }
+
+  .tag {
+    padding: 4px 10px;
+    border-radius: 14px;
+    font-size: 0.8em;
+    font-weight: bold;
+    display: inline-block;
+  }
+  .tag.yes {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  .tag.no {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+
+  .block-ip-form {
+    margin-top: 30px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    max-width: 400px;
+    background: #f9f9f9;
+  }
+  .block-ip-form h3 {
+    margin-bottom: 10px;
+    color: #cc0000;
+  }
+  .block-ip-form input, .block-ip-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .block-ip-form button {
+    background: #dc3545;
+    color: #fff;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .block-ip-form button:hover {
+    background: #bd2130;
+  }
+  .toggle-form {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.toggle-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.toggle-btn.on {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.toggle-btn.off {
+    background-color: #28a745;
+    color: white;
+}
+
+.toggle-btn:hover {
+    transform: scale(1.05);
+}
+
+</style>
+
+<div class="dashboard-header">
+  <h1>🛠️ Admin Dashboard</h1>
+  <div class="dashboard-actions">
+    <a href="{{ url_for('export_logs') }}">📤 Export CSV</a>
+    <a href="{{ url_for('blocked_ips') }}">🚫 Blocked IPs</a>
+    <a href="{{ url_for('logout') }}">🔓 Logout</a>
+  </div>
+</div>
+<form action="{{ url_for('toggle_autoblock') }}" method="post" style="margin-bottom:10px;">
+    <button type="submit">
+        {% if auto_block == 'on' %}🔴 Disable{% else %}🟢 Enable{% endif %} Auto-Block
+    </button>
+</form>
+<div class="section">
+  <h2>📄 Logged Requests</h2>
+  <div class="table-container">
+    <table class="log-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>IP Address</th>
+          <th>Time</th>
+          <th>Suspicious?</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for log in logs %}
+        <tr>
+          <td>{{ log[0] }}</td>
+          <td>{{ log[1] }}</td>
+     
+          <td>{{ log[4] }}</td>
+          <td>
+            <span class="tag {{ 'yes' if log[5] else 'no' }}">
+              {{ 'Yes' if log[5] else 'No' }}
+            </span>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <h2>📬 Contact Submissions</h2>
+  <div class="table-container">
+    <table class="log-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Message</th>
+          <th>Time</th>
+          <th>IP</th>
+          <th>Suspicious?</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for contact in contacts %}
+        <tr>
+          <td>{{ contact[0] }}</td>
+          <td>{{ contact[1] }}</td>
+          <td>{{ contact[2] }}</td>
+          <td>{{ contact[3] }}</td>
+          <td>{{ contact[4] }}</td>
+          <td>{{ contact[5] }}</td>
+          <td>
+            <span class="tag {{ 'yes' if contact[6] else 'no' }}">
+              {{ 'Yes' if contact[6] else 'No' }}
+            </span>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section block-ip-form">
+  <h3>🚫 Manually Block IP</h3>
+  <form method="POST" action="{{ url_for('block_ip') }}">
+    <label for="ip">IP Address:</label>
+    <input type="text" name="ip" id="ip" required>
+
+    <label for="reason">Reason (optional):</label>
+    <textarea name="reason" id="reason" rows="3"></textarea>
+
+    <button type="submit">Block IP</button>
+  </form>
+</div>
+
+<div class="section">
+  <h2>🚫 Blocked IPs</h2>
+  <div class="table-container">
+    <table class="log-table">
+      <thead>
+        <tr>
+          <th>IP Address</th>
+          <th>Reason</th>
+          <th>Timestamp</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for ip in blocked %}
+        <tr>
+          <td>{{ ip[0] }}</td>
+          <td>{{ ip[1] }}</td>
+          <td>{{ ip[2] }}</td>
+          <td>
+            <form action="{{ url_for('unblock_ip', ip=ip[0]) }}" method="post" style="display:inline;">
+              <button type="submit" style="background:#dc3545;color:white;border:none;padding:6px 10px;border-radius:4px;">Unblock</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

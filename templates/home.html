@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block title %}Home - CyberSecure{% endblock %}
+{% block content %}
+<style>
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        margin: 30px 0;
+    }
+    .card {
+        width: 280px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+    }
+    .card h2 {
+        font-size: 1.4em;
+        margin-bottom: 10px;
+        color: #2c3e50;
+    }
+    .card p {
+        font-size: 1em;
+        color: #555;
+    }
+    .hero h1 {
+        text-align: center;
+        font-size: 2.5em;
+    }
+
+  a.button:hover {
+    opacity: 0.9;
+    filter: brightness(0.95);
+  }
+
+</style>
+
+<section class="hero">
+    <h1>Welcome to <span style="color:#007BFF;">CyberSecure</span></h1>
+    <p style="text-align:center; max-width: 800px; margin: auto;">
+        CyberSecure is a powerful honeypot simulator designed to help students, ethical hackers, and educators
+        explore real-world cyber threats in a legal and safe environment. Learn how malicious actors operate and
+        how to defend against them.
+    </p>
+</section>
+
+<section class="card-container">
+    <div class="card">
+        <h2>🛡️ Simulated Attacks</h2>
+        <p>Logs threats like SQL Injection, XSS, and Directory Traversal to mimic realistic scenarios.</p>
+    </div>
+    <div class="card">
+        <h2>📊 Real-time Dashboard</h2>
+        <p>Visual graphs and data logs help understand what kind of threats are being detected and from where.</p>
+    </div>
+    <div class="card">
+        <h2>📨 Email Alerts</h2>
+        <p>Instantly notifies the administrator when suspicious activity is captured by the honeypot.</p>
+    </div>
+    <div class="card">
+        <h2>🎯 Threat Patterns</h2>
+        <p>Detects and highlights common payloads used by attackers to exploit systems.</p>
+    </div>
+    <div class="card">
+        <h2>🔐 Cybersecurity Education</h2>
+        <p>Perfect for learning how to spot and mitigate digital threats in hands-on workshops or labs.</p>
+    </div>
+    <div class="card">
+        <h2>📁 Log Export</h2>
+        <p>Export captured data into CSV for offline analysis, reporting, or training exercises.</p>
+    </div>
+</section>
+
+<section style="text-align: center; margin-top: 40px;">
+  <a href="/about" class="button" style="
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 10px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;">
+    Learn More
+  </a>
+  
+  <a href="/admin" class="button" style="
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 10px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;">
+    Admin Login
+  </a>
+</section>
+
+{% endblock %}

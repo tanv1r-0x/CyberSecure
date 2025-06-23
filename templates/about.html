@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% block title %}About - CyberSecure{% endblock %}
+{% block content %}
+<style>
+    .about-hero {
+        text-align: center;
+        padding: 40px 20px;
+    }
+    .about-hero h1 {
+        font-size: 2.8em;
+        color: #007BFF;
+    }
+    .about-hero p {
+        font-size: 1.2em;
+        max-width: 800px;
+        margin: auto;
+        color: #444;
+    }
+    .info-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+    }
+    .info-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        padding: 25px;
+        width: 300px;
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+    .info-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 20px rgba(0,0,0,0.2);
+    }
+    .info-card h3 {
+        margin-bottom: 10px;
+        color: #333;
+    }
+    .info-card p {
+        font-size: 0.95em;
+        color: #555;
+    }
+    .section-title {
+        text-align: center;
+        margin: 40px 0 10px;
+        font-size: 2em;
+    }
+     a.button:hover {
+    opacity: 0.9;
+    filter: brightness(0.95);
+  }
+</style>
+
+<section class="about-hero">
+    <h1>About CyberSecure</h1>
+    <p>CyberSecure is an advanced honeypot simulation platform designed for cybersecurity education, threat analysis, and real-world experimentation in a controlled environment. It helps you understand how attackers think, operate, and exploit vulnerabilities.</p>
+</section>
+
+<h2 class="section-title">🌐 What CyberSecure Offers</h2>
+<section class="info-cards">
+    <div class="info-card">
+        <h3>🔍 Threat Logging</h3>
+        <p>All suspicious requests are logged, including IP, headers, and access time, for in-depth analysis.</p>
+    </div>
+    <div class="info-card">
+        <h3>📈 Admin Dashboard</h3>
+        <p>Visual summaries and sortable logs make it easy to interpret incoming threats and patterns.</p>
+    </div>
+    <div class="info-card">
+        <h3>📧 Email Notification</h3>
+        <p>Get email alerts instantly when a suspicious attack is identified based on known patterns.</p>
+    </div>
+    <div class="info-card">
+        <h3>🧠 Learning Environment</h3>
+        <p>Students and educators use CyberSecure to safely test malicious inputs and observe outcomes.</p>
+    </div>
+    <div class="info-card">
+        <h3>⚙️ Easy Deployment</h3>
+        <p>No complex setup—just run the app, and it starts monitoring and logging suspicious behavior instantly.</p>
+    </div>
+    <div class="info-card">
+        <h3>📂 Export Logs</h3>
+        <p>Download CSV files of logged activity for reporting, teaching, or detailed research.</p>
+    </div>
+</section>
+
+<h2 class="section-title">💡 Vision Behind CyberSecure</h2>
+<section style="text-align: center; max-width: 900px; margin: auto; padding: 20px;">
+    <p>
+        CyberSecure was created to bridge the gap between theoretical cybersecurity knowledge and practical application. Many students learn about attacks in textbooks but never get the chance to see how those attacks manifest in a real system. With CyberSecure, users can:
+    </p>
+    <ul style="text-align: left; margin: 20px auto; max-width: 700px;">
+        <li>Understand how to set up a basic honeypot and protect it.</li>
+        <li>Learn how to recognize and stop attacks like SQL injection, XSS, and brute force.</li>
+        <li>Explore email-based alerting systems for incident response.</li>
+        <li>Gain insights into attack trends using real-time visualizations.</li>
+    </ul>
+</section>
+
+<h2 class="section-title">👨‍💻 Who Should Use This?</h2>
+<section class="info-cards">
+    <div class="info-card">
+        <h3>🎓 Students</h3>
+        <p>Learn ethical hacking and security analysis in a guided, hands-on way.</p>
+    </div>
+    <div class="info-card">
+        <h3>👩‍🏫 Educators</h3>
+        <p>Use this as a teaching aid for cybersecurity and ethical hacking modules.</p>
+    </div>
+    <div class="info-card">
+        <h3>💼 Professionals</h3>
+        <p>Test red-teaming tools or visualize basic exploit payloads for awareness.</p>
+    </div>
+</section>
+
+<section style="text-align: center; margin-top: 40px;">
+  <a href="/about" class="button" style="
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 10px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;">
+    Learn More
+  </a>
+  
+  <a href="/admin" class="button" style="
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 10px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;">
+    Admin Login
+  </a>
+</section>
+
+{% endblock %}

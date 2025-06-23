@@ -1,0 +1,4 @@
+body { font-family: Arial; margin: 0; padding: 0; background: #f9f9f9; }
+header { background: #00b89c; padding: 1rem; color: white; }
+nav a { margin: 0 1rem; color: white; text-decoration: none; }
+main { padding: 2rem; }

@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}Contact Us - CyberSecure{% endblock %}
+{% block content %}
+<style>
+    .contact-section {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 30px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        animation: fadeInUp 0.6s ease;
+    }
+
+    .contact-section h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #007BFF;
+    }
+
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 1em;
+        transition: border-color 0.3s ease;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+        border-color: #007BFF;
+        outline: none;
+    }
+
+    .contact-form button {
+        background: #007BFF;
+        color: white;
+        padding: 12px;
+        font-size: 1em;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .contact-form button:hover {
+        background: #0056b3;
+    }
+
+    .contact-info {
+        margin-top: 30px;
+        font-size: 0.95em;
+        color: #555;
+        text-align: center;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<div class="contact-section">
+    <h2>Contact Us / Raise a Query</h2>
+    <form class="contact-form" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <input type="text" name="subject" placeholder="Subject" required />
+        <textarea name="message" rows="5" placeholder="Your Message..." required></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+
+    <div class="contact-info">
+        <p>If you have questions, feedback, or suggestions about CyberSecure, feel free to reach out!</p>
+        <p><strong>Email:</strong> tanvir@anshinfotech.org</p>
+      
+    </div>
+</div>
+{% endblock %}

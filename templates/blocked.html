@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}Blocked IPs{% endblock %}
+
+{% block content %}
+<style>
+    .blocked-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .blocked-table th, .blocked-table td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .blocked-table th {
+        background-color: #333;
+        color: #fff;
+    }
+
+    .blocked-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .blocked-table tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .unblock-form button {
+        background-color: #e74c3c;
+        border: none;
+        padding: 6px 12px;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .unblock-form button:hover {
+        background-color: #c0392b;
+    }
+
+    h2 {
+        margin-top: 20px;
+        color: #2c3e50;
+    }
+
+    .no-data {
+        text-align: center;
+        color: #888;
+        padding: 20px;
+    }
+</style>
+
+<h2>🚫 Blocked IP Addresses</h2>
+
+{% if ips %}
+<table class="blocked-table">
+    <thead>
+        <tr>
+            <th>IP Address</th>
+            <th>Reason</th>
+            <th>Timestamp</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for ip, reason, timestamp in ips %}
+        <tr>
+            <td>{{ ip }}</td>
+            <td>{{ reason }}</td>
+            <td>{{ timestamp }}</td>
+            <td>
+                <form method="POST" action="{{ url_for('unblock_ip', ip=ip) }}" class="unblock-form">
+                    <button type="submit">Unblock</button>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    <div class="no-data">No blocked IPs found.</div>
+{% endif %}
+{% endblock %}
