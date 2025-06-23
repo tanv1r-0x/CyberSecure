@@ -54,9 +54,15 @@ CyberSecure is a Flask-based web application that functions as an educational ho
 **1.** **Clone the repository**
      git clone https://github.com/yourusername/CyberSecure.git
      cd CyberSecure
+
+     
 **2. Create a virtual environment**
     python -m venv venv
-    source venv/bin/activate  # On Windows: venv\Scripts\activate
+    source venv/bin/activate  
+    
+    # On Windows: venv\Scripts\activate
+
+    
 **3. Install dependencies**
     Flask
     bcrypt
@@ -69,8 +75,10 @@ CyberSecure is a Flask-based web application that functions as an educational ho
       EMAIL_ADDRESS=youremail@example.com
       EMAIL_PASSWORD=yourapppassword
 
+
 **5. Run the app**
     python app.py
+
   
 **6. Access the application**
     Home: http://localhost:5000/
