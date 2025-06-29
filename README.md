@@ -70,9 +70,15 @@ CyberSecure is a Flask-based web application that functions as an educational ho
 
 **4. **Configure environment variables
       Create a .env file:**
+      
       ADMIN_USERNAME=admin
+     
       ADMIN_PASSWORD=yourpassword
+     
+      
       EMAIL_ADDRESS=youremail@example.com
+    
+      
       EMAIL_PASSWORD=yourapppassword
 
 
