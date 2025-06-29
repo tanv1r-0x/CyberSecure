@@ -75,18 +75,18 @@ CyberSecure is a Flask-based web application that functions as an educational ho
      
       ADMIN_PASSWORD=yourpassword
      
-      
       EMAIL_ADDRESS=youremail@example.com
-    
       
       EMAIL_PASSWORD=yourapppassword
 
 
 **5. Run the app**
+
     python app.py
 
   
 **6. Access the application**
+
     Home: http://localhost:5000/
     
     Admin: http://localhost:5000/login
