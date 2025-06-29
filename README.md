@@ -52,7 +52,7 @@ CyberSecure is a Flask-based web application that functions as an educational ho
 ## 🔧 Installation
 
 **1.** **Clone the repository**
-     git clone https://github.com/yourusername/CyberSecure.git
+     git clone https://github.com/tanv1r-0x/CyberSecure.git
      cd CyberSecure
 
      
